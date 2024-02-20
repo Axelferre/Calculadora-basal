@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora de Hidratación Basal</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        #calculator {
+            max-width: 400px;
+            margin: auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        #resultado {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="calculator">
+        <h1>Calculadora de Hidratación Basal</h1>
+        
+        <label for="peso">Peso (kg):</label>
+        <input type="number" id="peso" required>
+
+        <label for="constante">Constante:</label>
+        <select id="constante">
+            <option value="1500">1500</option>
+            <option value="2000">2000</option>
+        </select>
+
+        <button onclick="calcularHidratacion()">Calcular</button>
+
+        <div id="resultado"></div>
+    </div>
+
+    <script>
+        function calcularHidratacion() {
+            var peso = parseFloat(document.getElementById('peso').value);
+            var constante = parseFloat(document.getElementById('constante').value);
+
+            var superficieCorporal = (peso * 4 + 7) / (peso + 90);
+            var volumenDiario = superficieCorporal * constante;
+
+            var resultadoElement = document.getElementById('resultado');
+            resultadoElement.innerHTML = `<p>Superficie Corporal: ${superficieCorporal.toFixed(2)}</p>`;
+            resultadoElement.innerHTML += `<p>Volumen Diario: ${volumenDiario.toFixed(2)} cc</p>`;
+        }
+    </script>
+
+</body>
+</html>
